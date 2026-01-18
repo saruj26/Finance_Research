@@ -1,5 +1,5 @@
 # ========================================================
-# LDA Topic Modeling on Cleaned Financial News Articles 
+# LDA Topic Modeling on Cleaned Financial News Articles
 # ========================================================
 
 # Step 0: Install Required Libraries (run once)
@@ -17,7 +17,7 @@ from IPython.display import display
 # --------------------------------------------------------
 # Project Path Definition
 # --------------------------------------------------------
-PROJECT_PATH = "/content/drive/MyDrive/SP500_Project"
+PROJECT_PATH = "/content/drive/MyDrive/SP500_Index"
 
 INPUT_DIR = os.path.join(PROJECT_PATH, "preprocessed_data")
 OUTPUT_DIR = os.path.join(PROJECT_PATH, "topic_results")
@@ -125,7 +125,31 @@ lda_vis = pyLDAvis.gensim_models.prepare(lda_model, bow_corpus, dictionary)
 pyLDAvis.enable_notebook()
 display(lda_vis)
 
-# Option B: Save as HTML
-html_path = os.path.join(OUTPUT_DIR, "lda_vis_filtered.html")
-pyLDAvis.save_html(lda_vis, html_path)
-print("✓ LDAvis HTML saved at:", html_path)
+
+
+# summary file
+# --------------------------------------------------------
+# Create LDA Topic Summary with Top Keywords
+# --------------------------------------------------------
+num_top_words = 20  # number of top keywords per topic
+topics_summary = []
+
+for i in range(num_topics):
+    # Get top words for the topic
+    top_words = lda_model.show_topic(i, topn=num_top_words)
+    keywords = [word for word, prob in top_words]
+    topics_summary.append({
+        "topic_id": i,
+        "top_keywords": ", ".join(keywords)
+    })
+
+# Convert to DataFrame
+topics_summary_df = pd.DataFrame(topics_summary)
+
+# Save topic summary to CSV
+topic_summary_file = os.path.join(OUTPUT_DIR, "lda_topic_summary.csv")
+topics_summary_df.to_csv(topic_summary_file, index=False)
+print("✓ LDA topic summary saved at:", topic_summary_file)
+
+# Optional: Display the topic summary
+display(topics_summary_df)
