@@ -46,16 +46,16 @@ class InferencePipeline:
         # Feature names (must match training data order)
         self.feature_names = [
             'sentiment_score',
-            'credit_ratings_fitch',
-            'fed_rates_macro',
-            'banks_markets_bonds_risk',
-            'us_politics_geopolitics_trump',
-            'italy_europe_data_treasury',
-            'markets_fx_commodities',
-            'china_trade_tariffs_energy',
+            'credit_ratings_risk',
+            'monetary_policy_inflation',
+            'banking_financial_markets',
+            'us_politics_geopolitics',
+            'economic_data_releases',
+            'stock_market_performance',
+            'trade_war_oil',
             'corporate_business_activity',
-            'election_tax_budget_us_politics',
-            'sp500_earnings_us_equities',
+            'elections_fiscal_policy',
+            'index_earnings',
             'tf_market',
             'tf_economy',
             'tf_bank',
@@ -110,16 +110,16 @@ class InferencePipeline:
         
         # Simplified topic detection based on keywords
         topics = {
-            'credit_ratings_fitch': 1.0 if any(w in text_lower for w in ['credit', 'rating', 'fitch', 'moody']) else 0.0,
-            'fed_rates_macro': 1.0 if any(w in text_lower for w in ['fed', 'federal reserve', 'interest rate', 'monetary']) else 0.0,
-            'banks_markets_bonds_risk': 1.0 if any(w in text_lower for w in ['bank', 'bond', 'market', 'risk']) else 0.0,
-            'us_politics_geopolitics_trump': 1.0 if any(w in text_lower for w in ['trump', 'politics', 'election', 'government']) else 0.0,
-            'italy_europe_data_treasury': 1.0 if any(w in text_lower for w in ['europe', 'italy', 'treasury', 'eu']) else 0.0,
-            'markets_fx_commodities': 1.0 if any(w in text_lower for w in ['commodity', 'forex', 'currency', 'gold', 'oil']) else 0.0,
-            'china_trade_tariffs_energy': 1.0 if any(w in text_lower for w in ['china', 'trade', 'tariff', 'energy']) else 0.0,
+            'credit_ratings_risk': 1.0 if any(w in text_lower for w in ['credit', 'rating', 'fitch', 'moody']) else 0.0,
+            'monetary_policy_inflation': 1.0 if any(w in text_lower for w in ['fed', 'federal reserve', 'interest rate', 'monetary']) else 0.0,
+            'banking_financial_markets': 1.0 if any(w in text_lower for w in ['bank', 'bond', 'market', 'risk']) else 0.0,
+            'us_politics_geopolitics': 1.0 if any(w in text_lower for w in ['trump', 'politics', 'election', 'government']) else 0.0,
+            'economic_data_releases': 1.0 if any(w in text_lower for w in ['europe', 'italy', 'treasury', 'eu']) else 0.0,
+            'stock_market_performance': 1.0 if any(w in text_lower for w in ['commodity', 'forex', 'currency', 'gold', 'oil']) else 0.0,
+            'trade_war_oil': 1.0 if any(w in text_lower for w in ['china', 'trade', 'tariff', 'energy']) else 0.0,
             'corporate_business_activity': 1.0 if any(w in text_lower for w in ['corporate', 'business', 'company', 'earnings']) else 0.0,
-            'election_tax_budget_us_politics': 1.0 if any(w in text_lower for w in ['election', 'tax', 'budget', 'fiscal']) else 0.0,
-            'sp500_earnings_us_equities': 1.0 if any(w in text_lower for w in ['sp500', 's&p', 'earnings', 'stock', 'equity']) else 0.0,
+            'elections_fiscal_policy': 1.0 if any(w in text_lower for w in ['election', 'tax', 'budget', 'fiscal']) else 0.0,
+            'index_earnings': 1.0 if any(w in text_lower for w in ['sp500', 's&p', 'earnings', 'stock', 'equity']) else 0.0,
         }
         
         return topics

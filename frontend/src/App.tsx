@@ -39,7 +39,7 @@ function App() {
         onPredictionComplete={handlePredictionComplete}
       />
       <PredictionIndicator prediction={prediction} isLoading={isLoading} />
-      <ShapExplainability />
+     {/* <ShapExplainability /> */}
       <Footer />
     </div>
   );
