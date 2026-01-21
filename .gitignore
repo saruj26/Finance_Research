@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+Data/
+.Data/
+data/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# VS Code
+.vscode/
+
+# Large CSV files (exceeding GitHub limits)
+Data/topic_results/LDA/lda_topic_08_filtered.csv
+Data/topic_results/LDA/lda_topic_10_filtered.csv
+Data/topic_results/LDA/lda_topic_12_filtered.csv
+Data/preprocessed_data/preprocessed_financial_news.csv
+
+# Large data files (optional - add more as needed)
+Data/collected_data/financial_News.csv
+Data/preprocessed_data/financial_news_daily.csv
+Data/topic_results/BERTopic/bertopic_topic_11_output.csv
